@@ -44,7 +44,7 @@ const categoryMeta = {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; q?: string }>;
+  searchParams: Promise<{ page?: string; q?: string; category?: string }>;
 }) {
   const params = await searchParams;
   const page = Number(params.page || 1);
