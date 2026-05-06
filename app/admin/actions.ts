@@ -154,7 +154,7 @@ export async function createListing(formData: FormData) {
 
   const title = String(formData.get("title") || "").trim();
   const location = String(formData.get("location") || "").trim();
-  const category = String(formData.get("category") || "emlak") as Category;
+  const category = String(formData.get("category") || "konut") as Category;
   const description = String(formData.get("description") || "").trim();
   const price = Number(formData.get("price") || 0);
   const mapUrl = String(formData.get("map_url") || "").trim() || null;
@@ -185,7 +185,7 @@ export async function updateListing(id: string, formData: FormData) {
 
   const title = String(formData.get("title") || "").trim();
   const location = String(formData.get("location") || "").trim();
-  const category = String(formData.get("category") || "emlak") as Category;
+  const category = String(formData.get("category") || "konut") as Category;
   const description = String(formData.get("description") || "").trim();
   const price = Number(formData.get("price") || 0);
   const mapUrl = String(formData.get("map_url") || "").trim() || null;

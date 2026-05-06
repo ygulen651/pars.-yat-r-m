@@ -5,7 +5,7 @@ create table if not exists public.listings (
   title text not null,
   description text not null,
   price numeric not null check (price >= 0),
-  category text not null check (category in ('emlak', 'tarla', 'arsa')),
+  category text not null check (category in ('konut', 'tarla', 'fabrika', 'arsa', 'bahce', 'ticari-arsa', 'enerji-tahsis-alani')),
   location text not null,
   map_url text,
   slug text not null unique,
@@ -36,7 +36,7 @@ values (
   'listing-images',
   true,
   10485760,
-  array['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+  array['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/quicktime']
 )
 on conflict (id) do update set
   public = excluded.public,
