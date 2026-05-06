@@ -4,9 +4,8 @@ export type Category =
   | "fabrika" 
   | "arsa" 
   | "bahce" 
-  | "ticari" 
-  | "arsa-kiralik" 
-  | "enerji-alani";
+  | "ticari-arsa" 
+  | "enerji-tahsis-alani";
 
 export type Listing = {
   id: string;
@@ -29,12 +28,11 @@ export type ListingImage = {
 };
 
 export const categories: { value: Category; label: string }[] = [
-  { value: "konut",         label: "Konut" },
-  { value: "tarla",         label: "Tarla" },
-  { value: "fabrika",       label: "Fabrika" },
-  { value: "arsa",          label: "Arsa" },
-  { value: "bahce",         label: "Bahçe" },
-  { value: "ticari",        label: "Ticari" },
-  { value: "arsa-kiralik",  label: "Arsa Kiralık" },
-  { value: "enerji-alani",  label: "Enerji Alanı" },
+  { value: "fabrika",             label: "Fabrika" },
+  { value: "ticari-arsa",         label: "Ticari Arsa" },
+  { value: "enerji-tahsis-alani", label: "Enerji Tahsis Alanı" },
+  { value: "bahce",               label: "Bahçe" },
+  { value: "tarla",               label: "Tarla" },
+  { value: "konut",               label: "Konut" },
+  { value: "arsa",                label: "Arsa" },
 ];

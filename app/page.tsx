@@ -13,14 +13,13 @@ const popularSearches = [
 ];
 
 const regionItems = [
-  { title: "Konut",          tag: "Merkez",      num: "01", side: "left",  category: "konut" },
-  { title: "Tarla",          tag: "Yatırım",     num: "02", side: "right", category: "tarla" },
-  { title: "Fabrika",        tag: "Sanayi",      num: "03", side: "left",  category: "fabrika" },
-  { title: "Arsa",           tag: "İmarlı",      num: "04", side: "right", category: "arsa" },
-  { title: "Bahçe",          tag: "Hobi",        num: "05", side: "left",  category: "bahce" },
-  { title: "Ticari",         tag: "İşyeri",      num: "06", side: "right", category: "ticari" },
-  { title: "Arsa Kiralık",   tag: "Depo",        num: "07", side: "left",  category: "arsa-kiralik" },
-  { title: "Enerji Alanı",   tag: "Tahsis",      num: "08", side: "right", category: "enerji-alani" },
+  { title: "Fabrika",             tag: "Sanayi",   num: "01", side: "left",  category: "fabrika" },
+  { title: "Ticari Arsa",         tag: "Yatırım",  num: "02", side: "right", category: "ticari-arsa" },
+  { title: "Enerji Tahsis Alanı", tag: "Ticari",   num: "03", side: "left",  category: "enerji-tahsis-alani" },
+  { title: "Bahçe",               tag: "Tarım",    num: "04", side: "right", category: "bahce" },
+  { title: "Tarla",               tag: "Yatırım",  num: "05", side: "left",  category: "tarla" },
+  { title: "Konut",               tag: "Emlak",    num: "06", side: "right", category: "konut" },
+  { title: "Arsa",                tag: "Yatırım",  num: "07", side: "left",  category: "arsa" },
 ];
 
 export default async function Home({
