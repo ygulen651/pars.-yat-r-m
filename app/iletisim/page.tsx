@@ -41,7 +41,7 @@ export default function ContactPage() {
                       marginBottom: "1rem"
                     }}
                   >
-                    Turan Terlemez
+                    Turhan Terlemez
                   </p>
                 </div>
 

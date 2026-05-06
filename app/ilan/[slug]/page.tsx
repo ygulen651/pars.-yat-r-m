@@ -141,7 +141,7 @@ export default async function ListingDetail({
               >
                 <p className="label-xs color-gold mb-8">Yatırım Danışmanı</p>
                 <div className="flex flex-col gap-6">
-                  <h3 className="display-md" style={{ fontSize: "1.8rem" }}>Turan Terlemez</h3>
+                  <h3 className="display-md" style={{ fontSize: "1.8rem" }}>Turhan Terlemez</h3>
                   <a href="tel:+905324514366" className="btn-primary w-full justify-center">
                     Bize Ulaşın
                   </a>

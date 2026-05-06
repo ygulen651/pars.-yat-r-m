@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 import { categories } from "@/lib/types";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
     <html lang="tr">
       <body>
         <Navbar />
+        <WhatsAppButton />
 
         {/* Page content */}
         <div style={{ paddingTop: "73px" }}>{children}</div>
@@ -110,7 +112,7 @@ export default function RootLayout({
                   fırsatlarını şeffaf ve güvenilir bir platformda sunuyoruz.
                 </p>
                 <div className="mt-8 flex flex-col gap-2">
-                   <p className="label-xs" style={{ color: "var(--gold-deep)" }}>Turan Terlemez</p>
+                   <p className="label-xs" style={{ color: "var(--gold-deep)" }}>Turhan Terlemez</p>
                    <a href="tel:+905324514366" className="text-sm hover:text-gold" style={{ color: "var(--ink-dim)" }}>
                      +90 532 451 43 66
                    </a>
