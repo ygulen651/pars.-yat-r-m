@@ -3,6 +3,14 @@ import { getListings } from "@/lib/listings";
 import { ListingCard } from "@/components/ListingCard";
 import { Pagination } from "@/components/Pagination";
 import type { Category } from "@/lib/types";
+import { categories } from "@/lib/types";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Karaman Satılık Arsa, Tarla ve Emlak İlanları",
+  description: "Karaman'ın en güncel satılık arsa, tarla ve emlak ilanları. Pars Yatırım güvencesiyle yatırımlık fırsatları kaçırmayın.",
+  keywords: "Karaman satılık arsa, Karaman satılık tarla, Karaman emlak ilanları, Karaman yatırım fırsatları",
+};
 
 export default async function ListingsPage({
   searchParams,
@@ -20,8 +28,9 @@ export default async function ListingsPage({
     search
   );
 
+  const categoryLabel = categories.find(c => c.value === category)?.label;
   const title = category 
-    ? (category === "emlak" ? "Konut" : category.charAt(0).toUpperCase() + category.slice(1))
+    ? categoryLabel
     : search ? `Arama: ${search}` : "Tüm İlanlar";
 
   return (
@@ -44,9 +53,15 @@ export default async function ListingsPage({
               </span>
               <div className="flex flex-wrap gap-2">
                 <Link href="/ilanlar" className={`search-tag ${!category && !search ? "active" : ""}`}>Tümü</Link>
-                <Link href="/ilanlar?category=emlak" className={`search-tag ${category === "emlak" ? "active" : ""}`}>Konut</Link>
-                <Link href="/ilanlar?category=tarla" className={`search-tag ${category === "tarla" ? "active" : ""}`}>Tarla</Link>
-                <Link href="/ilanlar?category=arsa" className={`search-tag ${category === "arsa" ? "active" : ""}`}>Arsa</Link>
+                {categories.map((cat) => (
+                  <Link 
+                    key={cat.value} 
+                    href={`/ilanlar?category=${cat.value}`} 
+                    className={`search-tag ${category === cat.value ? "active" : ""}`}
+                  >
+                    {cat.label}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

@@ -33,7 +33,7 @@ export function ImageGallery({ images, title }: { images: { url: string }[], tit
       {/* ══ ALL PHOTOS GRID (Excluding First) ═══════════ */}
       {images.length > 1 && (
         <div className="reveal-up delay-3 mt-8">
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-4 md:gap-8">
             {images.slice(1).map((img, i) => (
               <div 
                 key={i} 

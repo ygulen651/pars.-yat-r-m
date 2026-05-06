@@ -2,28 +2,63 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+
+import { categories } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: {
-    default: "Pars Yatırım — Prestijli Gayrimenkul",
+    default: "Pars Yatırım — Karaman Emlak, Arsa ve Yatırım Fırsatları",
     template: "%s — Pars Yatırım",
   },
   description:
-    "Türkiye genelinde satılık emlak, tarla ve arsa ilanları. Pars Yatırım ile güvenilir yatırım fırsatları.",
+    "Karaman'da yatırımın adresi Pars Yatırım. Karaman satılık arsa, tarla, emlak ve ticari mülkler için en güvenilir platform. Karaman fabrika ve yatırım atlası.",
+  keywords: [
+    "Karaman yatırım",
+    "Karaman arsa",
+    "Karaman emlak",
+    "Karaman fabrika",
+    "Karaman ticaret",
+    "Karaman satılık tarla",
+    "Karaman gayrimenkul",
+    "Pars Yatırım",
+  ],
+  authors: [{ name: "Pars Yatırım" }],
+  creator: "UGİ Agency",
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://www.parsyatirim.com.tr",
+    siteName: "Pars Yatırım",
+    title: "Pars Yatırım — Karaman'da Güvenilir Yatırım",
+    description: "Karaman'da satılık arsa, tarla ve emlak fırsatları. Profesyonel yatırım danışmanlığı.",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Pars Yatırım Karaman",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pars Yatırım — Karaman Yatırım Fırsatları",
+    description: "Karaman'da satılık arsa ve emlak. Yatırımın en doğru adresi.",
+    images: ["/images/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const navCategories = [
-  { label: "Emlak", href: "/ilanlar?category=emlak" },
+  { label: "Konut", href: "/ilanlar?category=konut" },
   { label: "Tarla", href: "/ilanlar?category=tarla" },
   { label: "Arsa", href: "/ilanlar?category=arsa" },
   { label: "Hakkımızda", href: "/hakkimizda" },
   { label: "İletişim", href: "/iletisim" },
-];
-
-const footerCategories = [
-  { label: "Emlak", href: "/ilanlar?category=emlak" },
-  { label: "Tarla", href: "/ilanlar?category=tarla" },
-  { label: "Arsa", href: "/ilanlar?category=arsa" },
 ];
 
 export default function RootLayout({
@@ -32,44 +67,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body>
-        {/* ══ NAVBAR ══════════════════════════════════════════ */}
-        <header className="glass-dark fixed top-0 left-0 right-0 z-50">
-          <div
-            className="mx-auto flex items-center justify-between px-6 py-4 md:px-10"
-            style={{ maxWidth: "1280px" }}
-          >
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/images/pars-logo.png"
-                alt="Pars Yatırım"
-                width={110}
-                height={52}
-                className="h-11 w-auto"
-                priority
-              />
-            </Link>
-
-            {/* Nav */}
-            <nav className="hidden md:flex items-center gap-10">
-              {navCategories.map((cat) => (
-                <Link key={cat.href} href={cat.href} className="nav-link">
-                  {cat.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Right */}
-            <div className="flex items-center gap-6">
-              <Link href="/admin" className="nav-link hidden md:block">
-                Yönetim
-              </Link>
-              <Link href="/ilanlar" className="btn-primary" style={{ padding: "0.6rem 1.5rem", fontSize: "0.7rem" }}>
-                Tüm İlanlar
-              </Link>
-            </div>
-          </div>
-        </header>
+        <Navbar />
 
         {/* Page content */}
         <div style={{ paddingTop: "73px" }}>{children}</div>
@@ -124,8 +122,8 @@ export default function RootLayout({
               <div>
                 <p className="label-xs mb-8">Kategoriler</p>
                 <div className="flex flex-col gap-4">
-                  {footerCategories.map((cat) => (
-                    <Link key={cat.href} href={cat.href} className="footer-link">
+                  {categories.map((cat) => (
+                    <Link key={cat.value} href={`/ilanlar?category=${cat.value}`} className="footer-link">
                       {cat.label}
                     </Link>
                   ))}
@@ -142,9 +140,7 @@ export default function RootLayout({
                   <Link href="/iletisim" className="footer-link">
                     İletişim
                   </Link>
-                  <Link href="/admin" className="footer-link">
-                    Yönetim Paneli
-                  </Link>
+
                 </div>
               </div>
             </div>
@@ -165,14 +161,24 @@ export default function RootLayout({
                 © {new Date().getFullYear()} Pars Yatırım. Tüm hakları saklıdır.
               </p>
               <p
-                className="text-xs tracking-widest"
+                className="text-xs tracking-widest flex items-center gap-2"
                 style={{
                   color: "var(--gold-deep)",
                   opacity: 0.8,
                   fontFamily: "var(--font-ui)",
                 }}
               >
-                PARS YATIRIM
+                <span>PARS YATIRIM</span>
+                <span style={{ opacity: 0.3 }}>|</span>
+                <a 
+                  href="https://www.ugi.net.tr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-gold transition-colors"
+                  style={{ fontSize: "10px", letterSpacing: "0.05em" }}
+                >
+                  UGİ TARAFINDAN YAPILMIŞTIR
+                </a>
               </p>
             </div>
           </div>

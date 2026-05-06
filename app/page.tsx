@@ -13,33 +13,15 @@ const popularSearches = [
 ];
 
 const regionItems = [
-  { title: "Konut",          tag: "Merkez",      num: "01", side: "left",  category: "emlak" },
+  { title: "Konut",          tag: "Merkez",      num: "01", side: "left",  category: "konut" },
   { title: "Tarla",          tag: "Yatırım",     num: "02", side: "right", category: "tarla" },
-  { title: "Fabrika",        tag: "Sanayi",      num: "03", side: "left",  category: "emlak" },
+  { title: "Fabrika",        tag: "Sanayi",      num: "03", side: "left",  category: "fabrika" },
   { title: "Arsa",           tag: "İmarlı",      num: "04", side: "right", category: "arsa" },
-  { title: "Bahçe",          tag: "Hobi",        num: "05", side: "left",  category: "tarla" },
-  { title: "Ticari",         tag: "İşyeri",      num: "06", side: "right", category: "emlak" },
-  { title: "Arsa Kiralık",   tag: "Depo",        num: "07", side: "left",  category: "arsa" },
-  { title: "Enerji Alanı",   tag: "Tahsis",      num: "08", side: "right", category: "arsa" },
+  { title: "Bahçe",          tag: "Hobi",        num: "05", side: "left",  category: "bahce" },
+  { title: "Ticari",         tag: "İşyeri",      num: "06", side: "right", category: "ticari" },
+  { title: "Arsa Kiralık",   tag: "Depo",        num: "07", side: "left",  category: "arsa-kiralik" },
+  { title: "Enerji Alanı",   tag: "Tahsis",      num: "08", side: "right", category: "enerji-alani" },
 ];
-
-const categoryMeta = {
-  emlak: {
-    icon: "◈",
-    desc: "Konut, daire, villa ve ticari mülkler",
-    stat: "En çok tercih edilen",
-  },
-  tarla: {
-    icon: "◇",
-    desc: "Tarım arazileri ve çiftlik alanları",
-    stat: "Yüksek yatırım getirisi",
-  },
-  arsa: {
-    icon: "◉",
-    desc: "İmarlı ve yatırımlık arsalar",
-    stat: "Hızla değer kazanıyor",
-  },
-};
 
 export default async function Home({
   searchParams,
@@ -63,7 +45,7 @@ export default async function Home({
           HERO
       ═══════════════════════════════════════════════ */}
       <section
-        className="relative min-h-screen flex items-center"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-start pt-4 md:pt-8 lg:pt-12"
         style={{
           background:
             "radial-gradient(ellipse 80% 60% at 70% 50%, rgba(140,100,45,0.08) 0%, transparent 65%), var(--void)",
@@ -106,14 +88,14 @@ export default async function Home({
           className="relative mx-auto w-full px-6 md:px-10"
           style={{ maxWidth: "1280px" }}
         >
-          <div className="grid lg:grid-cols-[1fr_420px] gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-20 items-center text-center lg:text-left">
 
             {/* Left */}
             <div>
               {/* Eyebrow */}
               <div
-                className="reveal-up flex items-center gap-4"
-                style={{ marginBottom: "2.5rem" }}
+                className="reveal-up flex items-center justify-center lg:justify-start gap-4"
+                style={{ marginBottom: "1.5rem" }}
               >
                 <div style={{ width: "2.5rem", height: "1px", background: "var(--gold)" }} />
                 <span className="label-xs">
@@ -128,13 +110,13 @@ export default async function Home({
               </h1>
 
               <p
-                className="reveal-up delay-2"
+                className="reveal-up delay-2 mx-auto lg:mx-0"
                 style={{
                   marginTop: "2rem",
                   color: "var(--ink-dim)",
                   fontFamily: "var(--font-ui)",
                   fontSize: "1rem",
-                  lineHeight: "2",
+                  lineHeight: "1.8",
                   maxWidth: "30rem",
                 }}
               >
@@ -145,13 +127,12 @@ export default async function Home({
               {/* Search */}
               <form
                 action="/"
-                className="reveal-up delay-3"
+                className="reveal-up delay-3 lg:flex-row"
                 style={{
                   marginTop: "2.5rem",
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   gap: "0.75rem",
-                  flexWrap: "wrap",
                 }}
               >
                 <div className="relative" style={{ flex: 1, minWidth: "200px" }}>
@@ -198,9 +179,8 @@ export default async function Home({
                 </a>
               </form>
 
-              {/* Tags */}
               <div
-                className="reveal-up delay-4"
+                className="reveal-up delay-4 flex justify-center lg:justify-start"
                 style={{ marginTop: "1.5rem", display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
               >
                 {popularSearches.map((item) => (
@@ -314,190 +294,107 @@ export default async function Home({
       </section>
 
       {/* ═══════════════════════════════════════════════
-          CATEGORIES — Bento Grid
+          YATIRIM ATLASI (Modern Regions)
       ═══════════════════════════════════════════════ */}
       <section
         style={{
           borderTop: "1px solid rgba(28,23,18,0.05)",
-          background: "var(--void-2)",
+          background: "var(--void)",
+          padding: "10rem 0",
         }}
       >
-        <div
-          className="mx-auto px-6 py-24 md:px-10"
-          style={{ maxWidth: "1280px" }}
-        >
-          {/* Header */}
-          <div
-            className="flex items-end justify-between"
-            style={{ marginBottom: "4rem" }}
-          >
-            <div>
-              <p className="label-xs" style={{ marginBottom: "1rem" }}>
-                Ne Arıyorsunuz?
-              </p>
-              <h2 className="display-lg">Kategoriler</h2>
+        <div className="mx-auto" style={{ maxWidth: "1280px", padding: "0 2.5rem" }}>
+          
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 md:gap-24">
+            
+            {/* Left: Sticky Title */}
+            <div className="md:sticky md:top-32 self-start text-center md:text-left mb-8 md:mb-0">
+              <h2 className="display-lg" style={{ lineHeight: 0.9 }}>
+                Yatırım
+                <br />
+                <span className="text-gold-grad">Atlası</span>
+              </h2>
+              <div 
+                className="hidden md:block"
+                style={{ 
+                  marginTop: "3rem", 
+                  width: "1px", 
+                  height: "100px", 
+                  background: "linear-gradient(to bottom, var(--gold), transparent)",
+                  opacity: 0.4
+                }} 
+              />
             </div>
-            <div className="hidden md:block line-gold-left" />
-          </div>
 
-          {/* Bento */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "1px",
-              background: "rgba(28,23,18,0.08)",
-            }}
-          >
-            {/* Card: Emlak (3 cols, tall) */}
-            <Link
-              href="/ilanlar?category=emlak"
-              className="bento-card"
-              style={{
-                gridColumn: "span 3",
-                padding: "3.5rem",
-                minHeight: "320px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <span
-                aria-hidden
-                className="bento-ghost-num"
-                style={{
-                  position: "absolute",
-                  top: "1.5rem",
-                  right: "2rem",
-                  fontFamily: "var(--font-display)",
-                  fontSize: "8rem",
-                  fontWeight: 300,
-                  lineHeight: 1,
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
-              >
-                01
-              </span>
-              <div>
-                <span style={{ fontSize: "2.5rem", color: "var(--gold)", opacity: 0.7, display: "block", marginBottom: "1.5rem" }}>
-                  {categoryMeta.emlak.icon}
-                </span>
-                <h3 className="bento-title display-md" style={{ marginBottom: "0.75rem" }}>
-                  Emlak
-                </h3>
-                <p style={{ color: "var(--ink-ghost)", fontSize: "0.875rem" }}>
-                  {categoryMeta.emlak.desc}
-                </p>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "2rem" }}>
-                <span style={{ color: "var(--gold-deep)", fontFamily: "var(--font-ui)", fontSize: "0.72rem", letterSpacing: "0.1em" }}>
-                  {categoryMeta.emlak.stat}
-                </span>
-                <span className="bento-arrow" style={{ fontSize: "1.25rem" }}>→</span>
-              </div>
-            </Link>
-
-            {/* Card: Tarla (2 cols, tall) */}
-            <Link
-              href="/ilanlar?category=tarla"
-              className="bento-card"
-              style={{
-                gridColumn: "span 2",
-                padding: "3rem",
-                minHeight: "320px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <span
-                aria-hidden
-                className="bento-ghost-num"
-                style={{
-                  position: "absolute",
-                  top: "1rem",
-                  right: "1.5rem",
-                  fontFamily: "var(--font-display)",
-                  fontSize: "6rem",
-                  fontWeight: 300,
-                  lineHeight: 1,
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
-              >
-                02
-              </span>
-              <div>
-                <span style={{ fontSize: "2rem", color: "var(--gold)", opacity: 0.7, display: "block", marginBottom: "1.5rem" }}>
-                  {categoryMeta.tarla.icon}
-                </span>
-                <h3 className="bento-title display-md" style={{ marginBottom: "0.75rem" }}>
-                  Tarla
-                </h3>
-                <p style={{ color: "var(--ink-ghost)", fontSize: "0.875rem" }}>
-                  {categoryMeta.tarla.desc}
-                </p>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "2rem" }}>
-                <span style={{ color: "var(--gold-deep)", fontFamily: "var(--font-ui)", fontSize: "0.72rem", letterSpacing: "0.1em" }}>
-                  {categoryMeta.tarla.stat}
-                </span>
-                <span className="bento-arrow" style={{ fontSize: "1.25rem" }}>→</span>
-              </div>
-            </Link>
-
-            {/* Card: Arsa (full width strip) */}
-            <Link
-              href="/ilanlar?category=arsa"
-              className="bento-card"
-              style={{
-                gridColumn: "span 5",
-                padding: "2.5rem 3.5rem",
-                minHeight: "140px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "2rem",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-                <span style={{ fontSize: "1.75rem", color: "var(--gold)", opacity: 0.7 }}>
-                  {categoryMeta.arsa.icon}
-                </span>
-                <div>
-                  <h3
-                    className="bento-title"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "2rem",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Arsa
-                  </h3>
-                  <p style={{ color: "var(--ink-ghost)", fontSize: "0.875rem", marginTop: "0.25rem" }}>
-                    {categoryMeta.arsa.desc}
-                  </p>
-                </div>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}>
-                <span
-                  className="hidden md:block"
-                  style={{ color: "var(--gold-deep)", fontFamily: "var(--font-ui)", fontSize: "0.72rem", letterSpacing: "0.1em" }}
+            {/* Right: Typographic List */}
+            <div className="flex flex-col">
+              {regionItems.map((reg) => (
+                <Link
+                  key={reg.title}
+                  href={`/ilanlar?category=${encodeURIComponent(reg.category || "")}&q=${encodeURIComponent(reg.title === reg.category ? "" : reg.title)}`}
+                  className="modern-region-item group"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "2.5rem 0",
+                    borderBottom: "1px solid rgba(28,23,18,0.08)",
+                    transition: "padding 0.4s var(--ease-out-expo)"
+                  }}
                 >
-                  {categoryMeta.arsa.stat}
-                </span>
-                <span className="bento-arrow" style={{ fontSize: "1.5rem" }}>→</span>
-              </div>
-            </Link>
+                  <div className="flex items-center gap-12 md:gap-20">
+                    <span
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "0.9rem",
+                        color: "var(--gold)",
+                        opacity: 0.5,
+                        width: "2rem"
+                      }}
+                    >
+                      {reg.num}
+                    </span>
+                    <h3 
+                      className="display-md group-hover:text-gold"
+                      style={{ 
+                        fontSize: "clamp(2rem, 4vw, 3.5rem)", 
+                        transition: "all 0.4s ease",
+                        letterSpacing: "-0.02em"
+                      }}
+                    >
+                      {reg.title}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-8">
+                    <span 
+                      className="label-xs hidden lg:block opacity-0 group-hover:opacity-100"
+                      style={{ 
+                        transition: "all 0.4s ease", 
+                        transform: "translateX(10px)",
+                      }}
+                    >
+                      {reg.tag}
+                    </span>
+                    <span 
+                      style={{ 
+                        fontSize: "1.5rem", 
+                        transition: "transform 0.4s var(--ease-out-expo)",
+                        color: "var(--gold)"
+                      }}
+                      className="group-hover:translate-x-2"
+                    >
+                      →
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
+
 
       {/* ═══════════════════════════════════════════════
           LISTINGS
@@ -601,207 +498,9 @@ export default async function Home({
         )}
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          MODERN REGIONS (Editorial Typographic Flow)
-      ═══════════════════════════════════════════════ */}
-      <section
-        style={{
-          borderTop: "1px solid rgba(28,23,18,0.05)",
-          background: "var(--void)",
-          padding: "10rem 0",
-        }}
-      >
-        <div className="mx-auto" style={{ maxWidth: "1280px", padding: "0 2.5rem" }}>
-          
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-24">
-            
-            {/* Left: Sticky Title */}
-            <div className="md:sticky md:top-32 self-start">
-              <h2 className="display-lg" style={{ lineHeight: 0.9 }}>
-                Yatırım
-                <br />
-                <span className="text-gold-grad">Atlası</span>
-              </h2>
-              <div 
-                style={{ 
-                  marginTop: "3rem", 
-                  width: "1px", 
-                  height: "100px", 
-                  background: "linear-gradient(to bottom, var(--gold), transparent)",
-                  opacity: 0.4
-                }} 
-              />
-            </div>
 
-            {/* Right: Typographic List */}
-            <div className="flex flex-col">
-              {regionItems.map((reg) => (
-                <Link
-                  key={reg.title}
-                  href={`/ilanlar?category=${encodeURIComponent(reg.category || "")}&q=${encodeURIComponent(reg.title === reg.category ? "" : reg.title)}`}
-                  className="modern-region-item group"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "2.5rem 0",
-                    borderBottom: "1px solid rgba(28,23,18,0.08)",
-                    transition: "padding 0.4s var(--ease-out-expo)"
-                  }}
-                >
-                  <div className="flex items-center gap-12 md:gap-20">
-                    <span
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontSize: "0.9rem",
-                        color: "var(--gold)",
-                        opacity: 0.5,
-                        width: "2rem"
-                      }}
-                    >
-                      {reg.num}
-                    </span>
-                    <h3 
-                      className="display-md group-hover:text-gold"
-                      style={{ 
-                        fontSize: "clamp(2rem, 4vw, 3.5rem)", 
-                        transition: "all 0.4s ease",
-                        letterSpacing: "-0.02em"
-                      }}
-                    >
-                      {reg.title}
-                    </h3>
-                  </div>
 
-                  <div className="flex items-center gap-8">
-                    <span 
-                      className="label-xs hidden lg:block opacity-0 group-hover:opacity-100"
-                      style={{ 
-                        transition: "all 0.4s ease", 
-                        transform: "translateX(10px)",
-                      }}
-                    >
-                      {reg.tag}
-                    </span>
-                    <span 
-                      style={{ 
-                        fontSize: "1.5rem", 
-                        transition: "transform 0.4s var(--ease-out-expo)",
-                        color: "var(--gold)"
-                      }}
-                      className="group-hover:translate-x-2"
-                    >
-                      →
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════
-          CTA — Editorial statement
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          borderTop: "1px solid rgba(28,23,18,0.05)",
-          background: "var(--void)",
-        }}
-      >
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 70% 80% at 50% 100%, rgba(140,100,40,0.07) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "10%",
-            right: "10%",
-            height: "1px",
-            background:
-              "linear-gradient(90deg, transparent, rgba(180,140,75,0.2), transparent)",
-          }}
-        />
-
-        <div
-          className="relative mx-auto px-6 md:px-10"
-          style={{ maxWidth: "1280px", padding: "8rem 2.5rem", textAlign: "center" }}
-        >
-          <p className="label-xs" style={{ marginBottom: "2.5rem" }}>
-            Pars Yatırım
-          </p>
-
-          <h2 className="display-xl mx-auto flex flex-col gap-4" style={{ maxWidth: "20ch" }}>
-            <span className="block">Geleceğinize</span>
-            <span className="block text-gold-shimmer" style={{ fontStyle: "italic", padding: "0.2em 0" }}>
-              Güvenle
-            </span> 
-            <span className="block">Yatırım Yapın.</span>
-          </h2>
-
-          <p
-            style={{
-              margin: "2.5rem auto 0",
-              fontSize: "1rem",
-              lineHeight: "2",
-              maxWidth: "28rem",
-              color: "var(--ink-dim)",
-              fontFamily: "var(--font-ui)",
-            }}
-          >
-            Türkiye&apos;nin dört bir yanında prestijli emlak fırsatlarını
-            keşfedin. Güvenilir platform, şeffaf bilgiler.
-          </p>
-
-          <div
-            style={{
-              marginTop: "3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <Link href="/" className="btn-primary" style={{ padding: "1rem 3rem" }}>
-              İlanları İnceleyin
-            </Link>
-            <a
-              href="https://www.google.com/maps"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost"
-              style={{ padding: "1rem 2rem" }}
-            >
-              Haritada Ara
-            </a>
-          </div>
-
-          {/* Faded logo watermark */}
-          <div style={{ marginTop: "5rem", opacity: 0.07, display: "flex", justifyContent: "center" }}>
-            <Image
-              src="/images/pars-logo.png"
-              alt=""
-              width={200}
-              height={100}
-              aria-hidden
-              style={{ width: "12rem", height: "auto" }}
-            />
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

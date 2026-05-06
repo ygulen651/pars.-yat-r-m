@@ -22,8 +22,8 @@ export async function generateMetadata({
   if (!listing) return {};
 
   return {
-    title: listing.title,
-    description: `${listing.location} ${listing.category} ilanı. ${formatPrice(listing.price)}. ${listing.description.slice(0, 120)}`,
+    title: `${listing.title} | Karaman Pars Yatırım`,
+    description: `Karaman ${listing.location} konumunda satılık ${listing.category}. ${formatPrice(listing.price)}. Karaman'da yatırımın adresi Pars Yatırım.`,
   };
 }
 
@@ -61,7 +61,7 @@ export default async function ListingDetail({
         </header>
 
         {/* ══ MAIN CONTENT GRID ══════════════════════════════ */}
-        <div className="grid lg:grid-cols-[1fr_400px] gap-20 pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 lg:gap-20 pb-32">
           
           {/* Left Column (Photos & Description) */}
           <div className="flex flex-col gap-12">
@@ -91,13 +91,13 @@ export default async function ListingDetail({
 
           {/* Right Column (Sidebar) */}
           <aside className="relative">
-            <div className="sticky top-32 flex flex-col gap-8 reveal-left">
+            <div className="lg:sticky lg:top-32 flex flex-col gap-8 reveal-left">
               
               {/* Financial Card */}
               <div 
+                className="p-6 lg:p-14"
                 style={{ 
                   background: "var(--void-2)", 
-                  padding: "3.5rem 3rem",
                   border: "1px solid rgba(28,23,18,0.06)",
                 }}
               >
@@ -133,9 +133,9 @@ export default async function ListingDetail({
 
               {/* Advisor Card */}
               <div 
+                className="p-8 lg:p-12"
                 style={{ 
                   background: "#fff", 
-                  padding: "3rem",
                   border: "1px solid rgba(28,23,18,0.08)",
                 }}
               >
